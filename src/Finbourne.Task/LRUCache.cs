@@ -8,6 +8,8 @@ public class LRUCache<TKey, TValue>
     private readonly Dictionary<TKey, LinkedListNode<KeyValuePair<TKey, TValue>>> _cacheMap;
     private readonly LinkedList<KeyValuePair<TKey, TValue>> _lruList;
 
+    public event Action<TKey, TValue>? ItemEvicted;
+
     public LRUCache(int capacity)
     {
         if (capacity <= 0)
@@ -58,6 +60,8 @@ public class LRUCache<TKey, TValue>
         {
             _cacheMap.Remove(lastNode.Value.Key);
             _lruList.RemoveLast();
+
+            ItemEvicted?.Invoke(key, value)
         }
     }
 
