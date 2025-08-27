@@ -25,7 +25,7 @@ public class LRUCache<TKey, TValue>
         if (_cacheMap.TryGetValue(key, out LinkedListNode<KeyValuePair<TKey, TValue>> node))
         {
             _lruList.Remove(node);
-            _lruList.AddFirst(node); // Move the most recently used item to the front
+            _lruList.AddFirst(node);
             return node.Value.Value;
         }
         return default;
