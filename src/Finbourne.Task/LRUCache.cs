@@ -58,11 +58,16 @@ public class LRUCache<TKey, TValue>
         var lastNode = _lruList.Last;
         if (lastNode != null)
         {
+            var kv = lastNode.Value;
             _cacheMap.Remove(lastNode.Value.Key);
             _lruList.RemoveLast();
 
-            ItemEvicted?.Invoke(key, value)
+            ItemEvicted?.Invoke(kv.Key, kv.Value);
         }
     }
+    
+    public IEnumerable<TKey> Keys => _cacheMap.Key
 
 }
+
+
