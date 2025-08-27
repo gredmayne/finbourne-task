@@ -1,4 +1,7 @@
-﻿namespace Finbourne.Task.Tests;
+﻿using Xunit;
+using Finbourne.Task;
+
+namespace Finbourne.Task.Tests;
 
 public class LRUCacheTests
 {
