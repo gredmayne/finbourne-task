@@ -48,12 +48,12 @@ public class LRUCache<TKey, TValue>
 
         if (_cacheMap.Count > _capacity)
         {
-            RemoveFirst();
+            RemoveLeastRecentlyUsed();
         }
 
     }
 
-    private void RemoveFirst()
+    private void RemoveLeastRecentlyUsed()
     {
         var lastNode = _lruList.Last;
         if (lastNode != null)
@@ -65,8 +65,8 @@ public class LRUCache<TKey, TValue>
             ItemEvicted?.Invoke(kv.Key, kv.Value);
         }
     }
-    
-    public IEnumerable<TKey> Keys => _cacheMap.Key
+
+    public int Count => _cacheMap.Count;
 
 }
 
