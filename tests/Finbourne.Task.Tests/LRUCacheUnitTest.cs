@@ -45,18 +45,21 @@ public class LRUCacheTests
     }
 
     [Fact]
-    public void ReturnsAllKeys()
+    public void CountNumberOfItems()
     {
-        var cache = new LRUCache<string, string>(3);
+        var cache = new LRUCache<string, string>(2);
+         // Should be count = empty initially, then after adding third item, count = 2
+       
+        Assert.Equal(0, cache.Count);
+
         cache.Set("ID123", "Equity");
+        Assert.Equal(1, cache.Count);
+
         cache.Set("ID456", "Bond");
+        Assert.Equal(2, cache.Count);
+
         cache.Set("ID789", "Fund");
-
-        var keys = new HashSet<string>(cache.Keys);
-
-        Assert.Contains("ID123", keys);
-        Assert.Contains("ID456", keys);
-        Assert.Contains("ID789", keys);
+        Assert.Equal(2, cache.Count); 
     }
 
     [Fact]
