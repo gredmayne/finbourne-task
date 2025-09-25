@@ -1,8 +1,8 @@
 ﻿using Xunit;
 using System.Collections.Generic;
-using Finbourne.Task;
+using LRUCache;
 
-namespace Finbourne.Task.Tests;
+namespace LRUCache.Tests;
 
 public class LRUCacheTests
 {

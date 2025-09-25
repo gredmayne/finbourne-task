@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Finbourne.Task;
+namespace LRUCache;
 
 public class LRUCache<TKey, TValue>
 {
