@@ -1,8 +1,8 @@
 ﻿using Xunit;
 using System.Collections.Generic;
-using Finbourne.Task;
+using LRUCache;
 
-namespace Finbourne.Task.Tests;
+namespace LRUCache.Tests;
 
 public class LRUCacheTests
 {
@@ -10,11 +10,11 @@ public class LRUCacheTests
     public void ReturnsCorrectValue()
     {
         var cache = new LRUCache<string, string>(1);
-        cache.Set("ID123", "Equity");
+        cache.Set("A", "Apple");
 
-        var result = cache.GetOrDefault("ID123");
+        var result = cache.GetOrDefault("A");
 
-        Assert.Equal("Equity", result);
+        Assert.Equal("Apple", result);
     }
 
     [Fact]
@@ -22,12 +22,12 @@ public class LRUCacheTests
     {
         var cache = new LRUCache<string, string>(2);
         // Should update value from "Equity" to "Bond"
-        cache.Set("ID123", "Equity");
-        cache.Set("ID123", "Bond"); 
+        cache.Set("A", "Apple");
+        cache.Set("A", "Banana"); 
 
-        var result = cache.GetOrDefault("ID123");
+        var result = cache.GetOrDefault("A");
 
-        Assert.Equal("Bond", result);
+        Assert.Equal("Banana", result);
     }
 
     [Fact]
@@ -35,13 +35,13 @@ public class LRUCacheTests
     {
         var cache = new LRUCache<string, string>(2);
         // Should evict "ID123"
-        cache.Set("ID123", "Equity");
-        cache.Set("ID456", "Bond");
-        cache.Set("ID789", "Fund"); 
+        cache.Set("A", "Apple");
+        cache.Set("B", "Banana");
+        cache.Set("C", "Cherry"); 
 
-        Assert.Null(cache.GetOrDefault("ID123"));
-        Assert.Equal("Bond", cache.GetOrDefault("ID456"));
-        Assert.Equal("Fund", cache.GetOrDefault("ID789"));
+        Assert.Null(cache.GetOrDefault("A"));
+        Assert.Equal("Banana", cache.GetOrDefault("B"));
+        Assert.Equal("Cherry", cache.GetOrDefault("C"));
     }
 
     [Fact]
@@ -52,13 +52,13 @@ public class LRUCacheTests
        
         Assert.Equal(0, cache.Count);
 
-        cache.Set("ID123", "Equity");
+        cache.Set("A", "Apple");
         Assert.Equal(1, cache.Count);
 
-        cache.Set("ID456", "Bond");
+        cache.Set("B", "Banana");
         Assert.Equal(2, cache.Count);
 
-        cache.Set("ID789", "Fund");
+        cache.Set("C", "Cherry");
         Assert.Equal(2, cache.Count); 
     }
 

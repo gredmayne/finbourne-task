@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Finbourne.Task\Finbourne.Task.csproj" />
+    <ProjectReference Include="..\..\src\LRUCache\LRUCache.csproj" />
   </ItemGroup>
 
 </Project>
